@@ -37,7 +37,6 @@ export async function PUT(request: Request) {
 		const { id } = await request.json();
 
 		if (id) {
-			// Marquer une notification spécifique comme lue pour cet employé
 			const existingRead = await prisma.notifications_reads.findFirst({
 				where: {
 					notification_id: id,
@@ -46,7 +45,6 @@ export async function PUT(request: Request) {
 			});
 
 			if (!existingRead) {
-				// Créer une nouvelle entrée de lecture
 				await prisma.notifications_reads.create({
 					data: {
 						notification_id: id,
@@ -55,7 +53,6 @@ export async function PUT(request: Request) {
 					}
 				});
 			} else if (!existingRead.readed) {
-				// Mettre à jour l'entrée existante
 				await prisma.notifications_reads.update({
 					where: { id: existingRead.id },
 					data: { readed: true }
@@ -65,7 +62,6 @@ export async function PUT(request: Request) {
 			return NextResponse.json({ success: true });
 
 		} else {
-			// Marquer toutes les notifications non lues comme lues pour cet employé
 			const unreadNotifications = await prisma.notifications.findMany({
 				where: {
 					company_id: session.user.company.id,
@@ -78,7 +74,6 @@ export async function PUT(request: Request) {
 				}
 			});
 
-			// Pour chaque notification non lue
 			for (const notification of unreadNotifications) {
 				const existingRead = await prisma.notifications_reads.findFirst({
 					where: {
@@ -88,7 +83,6 @@ export async function PUT(request: Request) {
 				});
 
 				if (!existingRead) {
-					// Créer une nouvelle entrée
 					await prisma.notifications_reads.create({
 						data: {
 							notification_id: notification.id,
@@ -97,7 +91,6 @@ export async function PUT(request: Request) {
 						}
 					});
 				} else {
-					// Mettre à jour l'entrée existante
 					await prisma.notifications_reads.update({
 						where: { id: existingRead.id },
 						data: { readed: true }
