@@ -93,7 +93,7 @@ export default function Dashboard() {
 			<div className="flex flex-col gap-6 mb-4 rounded-2xl border border-[var(--border-light)] dark:border-neutral-800">
 				<div className="flex flex-col gap-6 p-6 bg-gradient-to-t from-gray-100 to-white rounded-2xl shadow-sm border-[var(--border)] dark:from-black dark:to-neutral-900">
 					<h2 className="text-2xl font-semibold dark:text-white">Besoin d&apos;aide ?</h2>
-					<p className="text-sm opacity-75 dark:text-white">Contactez-nous sur notre <Link href="https://discord.gg/" className="text-blue-500">Intranet</Link> pour toute question ou demande de service.</p>
+					<p className="text-sm opacity-75 dark:text-white">Rendez-vous sur le <Link href="https://github.com/ElSofian/demo-calipso.git">Repo</Link> pour tout renseignement.</p>
 				</div>
 			</div>
 
