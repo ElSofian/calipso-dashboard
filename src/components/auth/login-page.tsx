@@ -12,8 +12,6 @@ export default function LoginPage() {
 		switch (error) {
 			case "1": toast.error("Identifiants incorrects:"); break;
 			case "2": toast.error("Entreprise ou employé non trouvé:"); break;
-			
-			default: toast.error("Erreur serveur:"); break;
 		}
   }, [error]);
 
