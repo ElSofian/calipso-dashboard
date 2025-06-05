@@ -28,7 +28,7 @@ export default function LoginPage() {
 					<div className="flex flex-col gap-2 text-sm font-medium">
 						<div className="flex flex-row items-center justify-between">
 							<label htmlFor="password">Mot de passe</label>
-							<a href="/auth/forgot-password" className="ml-24 inline-block font-normal text-sm underline-offset-4 hover:underline">Mot de passe oublié ?</a>
+							{/*<a href="/auth/forgot-password" className="ml-24 inline-block font-normal text-sm underline-offset-4 hover:underline">Mot de passe oublié ?</a>*/}
 						</div>
 						<input type="password" name="password" defaultValue="demo" className="rounded-md p-2 border border-gray-300 outline-none focus-visible:ring-[3px] focus-visible:ring-gray-300 shadow-xs" required />
 					</div>
