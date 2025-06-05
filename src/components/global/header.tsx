@@ -4,6 +4,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { formatDistanceToNowStrict } from "date-fns";
 import { fr } from "date-fns/locale";
 import { Notification } from "@/types";
+import Link from "next/link";
 
 export default function Header({ onToggleSidebar }: { onToggleSidebar: () => void }) {
   const [theme, setTheme] = useState("light");
@@ -96,6 +97,11 @@ export default function Header({ onToggleSidebar }: { onToggleSidebar: () => voi
         <h1 className="text-lg font-medium dark:text-white">Comptabilité</h1>
       </div>
       <div className="flex items-center gap-3">
+				<Link href="https://github.com/ElSofian/calipso-dashboard.git">
+					<i
+          className={`fa-brands fa-fw fa-md fa-github cursor-pointer dark:text-white`}
+					/>
+				</Link>
         <i
           className={`fa-light fa-fw fa-md ${
             theme === "light" ? "fa-moon" : "fa-sun"
