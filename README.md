@@ -22,8 +22,8 @@ Avec Calipso Dashboard, vous pouvez :
 
 Avant de démarrer, assurez-vous d’avoir installé :
 
-- **Git** pour cloner le dépôt
-- Une base de données relationnelle MySQL (voir [Xampp](https://www.apachefriends.org/fr/index.html) pour héberger en local)
+- **Git** pour cloner le dépôt.
+- Une base de données relationnelle MySQL (voir [Xampp](https://www.apachefriends.org/fr/index.html) si vous souhaitez le host en local).
 
 ---
 
