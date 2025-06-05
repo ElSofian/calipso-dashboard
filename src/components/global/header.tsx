@@ -93,7 +93,7 @@ export default function Header({ onToggleSidebar }: { onToggleSidebar: () => voi
           <i className="fa-light fa-sidebar fa-fw fa-md dark:text-white" />
         </button>
 				<div className="bg-neutral-200 rounded-full shrink-0 h-4 w-0.5 mx-2"></div>
-        <h1 className="text-lg font-medium dark:text-white">Comptabilité</h1>
+        <h1 className="text-lg font-medium dark:text-white">Test</h1>
       </div>
       <div className="flex items-center gap-3">
         <i
