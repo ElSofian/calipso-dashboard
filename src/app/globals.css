@@ -1,0 +1,76 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+	--border: var(--border);
+	--border-light: var(--border-light);
+	--muted-foreground: var(--muted-foreground);
+	--muted-background: var(--muted-background);
+	--table-header-dark: var(--table-header-dark);
+}
+
+:root {
+	--border: oklch(0.928 0.006 264.531);
+	--border-light: oklch(0.99 0.006 264.531);
+	--muted-foreground: oklch(0.551 0.027 264.364);
+	--muted-background: oklch(0.97 0.001 106.424);
+	--table-header-dark: #27272A;
+}
+
+.rbc-month-view {
+	@apply !bg-white !rounded-t-lg dark:!bg-neutral-800 dark:!border-neutral-700;
+}
+
+.rbc-header {
+	@apply dark:!border-b-neutral-600;
+}
+
+.rbc-header + .rbc-header {
+	@apply dark:!border-l-neutral-400;
+}
+
+.rbc-month-row + .rbc-month-row {
+	@apply dark:!border-t-neutral-600;
+}
+
+.rbc-day-bg + .rbc-day-bg {
+	@apply dark:!border-l-neutral-600;
+}
+
+.rbc-month-header {
+	@apply !text-black dark:!text-white dark:!bg-[var(--table-header-dark)];
+}
+
+.rbc-off-range-bg {
+	@apply !bg-gray-100 dark:!bg-neutral-900;
+}
+
+.rbc-button-link {
+	@apply !text-black dark:!text-white;
+}
+
+.rbc-today {
+	@apply dark:!bg-black;
+}
+
+.rbc-event {
+	@apply !bg-black !w-11/12 !mx-auto;
+}
+
+.rbc-toolbar-label::first-letter {
+	@apply !uppercase;
+}
+
+.rbc-active {
+	@apply !bg-black !text-white;
+}
+
+.rbc-row-bg {
+	@apply !cursor-pointer;
+}
+
+.rbc-month-row {
+	@apply !cursor-pointer;
+}
