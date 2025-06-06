@@ -13,7 +13,7 @@
 
 ## 📖 Description
 
-**Calipso Dashboard** est une application web fullstack conçue pour gérer facilement plusieurs entreprises depuis un unique tableau de bord. Inspiré par la philosophie de design de **Shadcn UI**, chaque composant a été développé **à la main**, sans dépendances tierces pour les composants visuels, afin d’offrir une expérience utilisateur légère, cohérente et entièrement personnalisable.
+**Calipso Dashboard** est une application web fullstack conçue pour gérer facilement plusieurs entreprises depuis un unique tableau de bord. Inspiré par la philosophie de design de **Shadcn UI**, chaque composant a été développé **à la main**, sans dépendances tierces pour les composants visuels, afin de me challenger.
 
 Avec Calipso Dashboard, vous pouvez :
 - Suivre en temps réel les métriques clés (revenus, dépenses, effectifs, etc.)
