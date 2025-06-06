@@ -7,13 +7,13 @@
 ![Prisma](https://img.shields.io/badge/Prisma-3982CE?style=for-the-badge&logo=Prisma&logoColor=white)
 ![MySQL](https://img.shields.io/badge/mysql-4479A1.svg?style=for-the-badge&logo=mysql&logoColor=white)
 
-💫 Vous pouvez accéder à la version demo en [cliquant ici](https://demo.calipso.me).   
+## 💫 Vous pouvez accéder à la version demo en [cliquant ici](https://demo.calipso.me).   
 **Nom d'utilisateur:** demo  
 **Mot de passe:** demo  
 
 ## 📖 Description
 
-**Calipso Dashboard** est une application web fullstack conçue pour gérer facilement plusieurs entreprises depuis un unique tableau de bord. Inspiré par la philosophie de design de **Shadcn UI**, chaque composant a été développé **à la main**, sans dépendances tierces pour les composants visuels, afin d’offrir une expérience utilisateur légère, cohérente et entièrement personnalisable.
+**Calipso Dashboard** est une application web fullstack conçue pour gérer facilement plusieurs entreprises depuis un unique tableau de bord. Inspiré par la philosophie de design de **Shadcn UI**, chaque composant a été développé **à la main**, sans dépendances tierces pour les composants visuels, afin de me challenger.
 
 Avec Calipso Dashboard, vous pouvez :
 - Suivre en temps réel les métriques clés (revenus, dépenses, effectifs, etc.)
@@ -38,4 +38,5 @@ Avant de démarrer, assurez-vous d’avoir installé :
    git clone https://github.com/ElSofian/calipso-dashboard.git
    cd calipso-dashboard
    npm i --legacy-peer-deps
+   npx prisma generate
    npm run dev
