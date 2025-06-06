@@ -38,4 +38,5 @@ Avant de démarrer, assurez-vous d’avoir installé :
    git clone https://github.com/ElSofian/calipso-dashboard.git
    cd calipso-dashboard
    npm i --legacy-peer-deps
+   npx prisma generate
    npm run dev
