@@ -33,7 +33,6 @@ Avant de démarrer, assurez-vous d’avoir installé :
 
 ## 🚀 Installation & Configuration
 
-1. **Cloner le dépôt**  
    ```bash
    git clone https://github.com/ElSofian/calipso-dashboard.git
    cd calipso-dashboard
