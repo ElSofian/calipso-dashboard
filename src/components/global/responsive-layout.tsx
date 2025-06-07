@@ -93,7 +93,12 @@ export default function ResponsiveLayout({
         `}
       >
         <Header onToggleSidebar={handleToggleSidebar} />
-        <main className="flex-1 overflow-y-auto p-6">
+        <main className="flex-1 overflow-y-auto p-6
+				[&::-webkit-scrollbar]:w-2
+				[&::-webkit-scrollbar-track]:bg-transparent
+			[&::-webkit-scrollbar-thumb]:bg-gray-200
+			dark:[&::-webkit-scrollbar-thumb]:bg-neutral-800
+				">
           {children}
         </main>
       </div>
