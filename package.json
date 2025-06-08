@@ -1,6 +1,6 @@
 {
-  "name": "nextjs",
-  "version": "0.1.0",
+  "name": "calipso-dashboard",
+  "version": "0.9.5",
   "private": true,
   "scripts": {
     "deploy": "next build && cp -r .next/static .next/standalone/.next/ && cp -r public .next/standalone/",
