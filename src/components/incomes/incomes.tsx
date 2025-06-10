@@ -67,8 +67,8 @@ export default function Incomes() {
         />
       </div>
 
-      <div className="grid grid-cols-11 items-start justify-between gap-6">
-        <div className="col-span-7 flex flex-col gap-6 p-6 bg-gradient-to-t from-gray-100 to-white dark:from-black dark:to-neutral-800 dark:border-white rounded-2xl shadow-sm border-[var(--border)]">
+      <div className="grid grid-cols-1 lg:grid-cols-11 items-start justify-between gap-6">
+        <div className="col-span-1 lg:col-span-7 flex flex-col gap-6 p-6 bg-gradient-to-t from-gray-100 to-white dark:from-black dark:to-neutral-800 dark:border-white rounded-2xl shadow-sm border-[var(--border)]">
           <div className="flex items-center justify-between">
             <p className="text-sm opacity-75 dark:text-white">Graphique des revenus</p>
             <div className="flex items-center gap-4 text-xs text-gray-500 dark:text-gray-400">
@@ -134,15 +134,15 @@ export default function Incomes() {
           </div>
         </div>
 
-        <div className="col-span-4 flex flex-col gap-6 p-6 bg-gradient-to-t from-gray-100 to-white dark:from-black dark:to-neutral-800 dark:border-white rounded-2xl shadow-sm border-[var(--border)]">
+        <div className="col-span-1 lg:col-span-4 flex flex-col gap-6 p-6 bg-gradient-to-t from-gray-100 to-white dark:from-black dark:to-neutral-800 dark:border-white rounded-2xl shadow-sm border-[var(--border)]">
 					<p className="text-sm opacity-75 dark:text-white">Analyse intelligente</p>
 
           <div className="space-y-4">
             <div className="flex items-start gap-3 p-3 rounded-lg bg-white/50 dark:bg-black/20">
               {insights.trend === "up" ? (
-                <TrendingUp className="w-4 h-4 text-green-500 mt-0.5" />
+                <i className="fa-light fa-arrow-trend-up fa-fw fa-sm text-green-500 mt-2" />
               ) : (
-                <TrendingDown className="w-4 h-4 text-red-500 mt-0.5" />
+                <i className="fa-light fa-arrow-trend-down fa-fw fa-sm text-red-500 mt-2" />
               )}
               <div>
                 <p className="text-sm font-medium dark:text-white">Tendance</p>
@@ -151,7 +151,7 @@ export default function Incomes() {
             </div>
 
             <div className="flex items-start gap-3 p-3 rounded-lg bg-white/50 dark:bg-black/20">
-              <Target className="w-4 h-4 text-blue-500 mt-0.5" />
+              <i className="fa-light fa-bullseye fa-fw fa-sm text-blue-500 mt-2" />
               <div>
                 <p className="text-sm font-medium dark:text-white">Performance</p>
                 <p className="text-xs text-gray-600 dark:text-gray-400">{insights.bestPeriod}</p>
@@ -159,7 +159,7 @@ export default function Incomes() {
             </div>
 
             <div className="flex items-start gap-3 p-3 rounded-lg bg-white/50 dark:bg-black/20">
-              <Calendar className="w-4 h-4 text-purple-500 mt-0.5" />
+              <i className="fa-light fa-calendar fa-fw fa-sm text-purple-500 mt-2" />
               <div>
                 <p className="text-sm font-medium dark:text-white">Moyenne quotidienne</p>
                 <p className="text-xs text-gray-600 dark:text-gray-400">{insights.dailyAverage}</p>
@@ -167,7 +167,7 @@ export default function Incomes() {
             </div>
 
             <div className="flex items-start gap-3 p-3 rounded-lg bg-white/50 dark:bg-black/20">
-              <DollarSign className="w-4 h-4 text-green-500 mt-0.5" />
+              <i className="fa-light fa-dollar-sign fa-fw fa-sm text-green-500 mt-2" />
               <div>
                 <p className="text-sm font-medium dark:text-white">Objectif mensuel</p>
                 <p className="text-xs text-gray-600 dark:text-gray-400">{insights.monthlyGoal}</p>
@@ -175,7 +175,7 @@ export default function Incomes() {
             </div>
 
             <div className="flex items-start gap-3 p-3 rounded-lg bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800">
-              <Lightbulb className="w-4 h-4 text-blue-500 mt-0.5" />
+              <i className="fa-light fa-lightbulb fa-fw fa-sm text-blue-500 mt-2.5" />
               <div>
                 <p className="text-sm font-medium text-blue-900 dark:text-blue-100">Recommandation</p>
                 <p className="text-xs text-blue-700 dark:text-blue-300">{insights.recommendation}</p>
