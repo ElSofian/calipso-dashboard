@@ -12,7 +12,6 @@ import {
 } from "@/utils/functions"
 import type { Income } from "@/types"
 import { toast } from "@/lib/toast"
-import { TrendingUp, TrendingDown, DollarSign, Calendar, Target, Lightbulb } from "lucide-react"
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Area, AreaChart } from "recharts"
 
 export default function Incomes() {
