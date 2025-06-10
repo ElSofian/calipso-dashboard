@@ -104,7 +104,7 @@ export default function Header({ onToggleSidebar }: { onToggleSidebar: () => voi
 				</Link>
         <i
           className={`fa-light fa-fw fa-md ${
-            theme === "light" ? "fa-moon" : "fa-sun"
+            theme === "light" ? "fa-moon" : "fa-sun-bright"
           } cursor-pointer dark:text-white`}
           onClick={toggleTheme}
         />
