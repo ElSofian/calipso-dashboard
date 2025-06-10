@@ -27,12 +27,12 @@ export default function Stock() {
 
 				<Card 
 					title="Total d'items"
-					value={stock.reduce((acc, item) => acc + item.total, 0) + "$"}
+					value={stock.reduce((acc, item) => acc + item.total, 0).toLocaleString("fr-FR") + "$"}
 				/>
 
 				<Card 
 					title="Valeur du stock"
-					value={stock.reduce((acc, item) => acc + (item.total * item.price), 0) + "$"}
+					value={stock.reduce((acc, item) => acc + (item.total * item.price), 0).toLocaleString("fr-FR") + "$"}
 				/>
 			</div>
 
