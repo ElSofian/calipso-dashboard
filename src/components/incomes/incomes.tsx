@@ -14,6 +14,14 @@ import type { Income } from "@/types"
 import { toast } from "@/lib/toast"
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Area, AreaChart } from "recharts"
 
+type TooltipProps = {
+  active?: boolean
+  payload?: Array<{
+    value: number
+  }>
+  label?: string
+}
+
 export default function Incomes() {
   const [incomes, setIncomes] = useState<Income[]>([])
   const weeklyPercentage = getTimePercentage(incomes, "weekly")
@@ -30,7 +38,7 @@ export default function Incomes() {
   const weeklyData = getLast7DaysData(incomes)
   const insights = getIncomeInsights(incomes)
 
-  const CustomTooltip = ({ active, payload, label }: any) => {
+  const CustomTooltip = ({ active, payload, label }: TooltipProps) => {
     if (active && payload && payload.length) {
       return (
         <div className="bg-white dark:bg-gray-800 p-3 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700">
