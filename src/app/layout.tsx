@@ -22,11 +22,11 @@ export default function RootLayout({
 
   return (
     <html lang="en" className={`${inter.className} light`}>
-	<head>
-		<link rel="stylesheet" href="https://kit.fontawesome.com/a31e608af5.css" crossOrigin="anonymous" />
-	</head>
+			<head>
+				<link rel="stylesheet" href="https://kit.fontawesome.com/a31e608af5.css" crossOrigin="anonymous" />
+			</head>
       <body>
-	  	<ToastProvider />
+	  		<ToastProvider />
         {children}
       </body>
     </html>

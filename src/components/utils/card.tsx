@@ -15,20 +15,25 @@ interface CardProps {
 export default function Card({ title, value, description, subDescription, percentage, iconDirection, color, image, countCircle }: CardProps) {
 
 	return (
-		<div className="flex flex-col gap-6 p-6 rounded-2xl shadow-md border-[var(--border)] bg-gradient-to-t from-gray-100 to-white dark:from-black dark:to-neutral-800 dark:border-white">
+		<div className="relative flex flex-col gap-6 p-6 rounded-2xl shadow-md border-[var(--border)] bg-gradient-to-t from-gray-100 to-white dark:from-black dark:to-neutral-800 dark:border-white">
 			<div>
-				<div className="flex flex-row items-center justify-between">
-					<p className="text-sm opacity-75 dark:text-white">{title}</p>
-					{percentage && 
+				{percentage 
+					?
+					<div className="flex flex-row items-center justify-between">
+						<p className="text-sm opacity-75 dark:text-white">{title}</p>
+						
 						<div className="flex flex-row items-center gap-2 rounded-md px-2 py-0.5 border-1 border-gray-200 dark:bg-neutral-800 dark:border-gray-700">
-							<i 
-								className={`fa-light fa-xs fa-arrow-trend-${iconDirection} ${color}`}
-							/>
+							<i className={`fa-light fa-xs fa-arrow-trend-${iconDirection} ${color}`} />
 							<p className="text-xs font-medium dark:text-white">{percentage}%</p>
 						</div>
-					}
-					{image && <Image src={image} alt={title} className="rounded-full" width={48} height={48} />}
-				</div>
+					</div>
+
+					: 
+					<div className="flex flex-row items-center justify-between">
+						<p className="text-sm opacity-75 dark:text-white">{title}</p>
+						{image && <Image src={image} alt={title} className="absolute top-5 right-5 rounded-full" width={48} height={48} />}
+					</div>
+				}
 
 				<div className="flex flex-row items-center gap-2">
 					{countCircle && <div className="w-3 h-3 bg-green-500 rounded-full" />}

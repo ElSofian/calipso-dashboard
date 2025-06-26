@@ -1,68 +1,130 @@
 "use client";
 
-import React, { useState, useEffect } from 'react';
-import Table from '@/components/utils/table';
-import Card from '@/components/utils/card';
-import CreateVehicleModal from '@/components/garage/create-vehicle';
-import { Vehicle } from '@/types';
-import { toast } from '@/lib/toast';
+import CreateVehicle from "@/components/garage/create-vehicle";
+import Card from "@/components/utils/card";
+import { ErrorBoundary } from "@/components/utils/error-boundary";
+import Table from "@/components/utils/table";
+import { toast } from "@/lib/toast";
+import { Vehicle } from "@/types";
+import { useCallback, useEffect, useMemo, useState } from "react";
 
 export default function Garage() {
+  const [vehicles, setVehicles] = useState<Vehicle[]>([]);
+  const [createModalIsOpen, setCreateModalIsOpen] = useState(false);
 
-	const [vehicles, setVehicles] = useState<Vehicle[]>([]);
-	const [modalIsOpen, setModalIsOpen] = useState(false);
-	const [isSaving, setIsSaving] = useState(false);
+  const stats = useMemo(() => {
+    const totalVehicles = vehicles.length;
+    const availableVehicles = vehicles.filter((v) => !v.employee_id).length;
+    const assignedVehicles = vehicles.filter((v) => v.employee_id).length;
 
-	useEffect(() => {
-		fetch('/api/garage')
-			.then(res => res.json())
-			.then(data => setVehicles(data.vehicles))
-			.catch(err => toast.error(err?.message || 'Une erreur est survenue lors de la récupération des véhicules'));
-	}, []);
+    return {
+      totalVehicles,
+      availableVehicles,
+      assignedVehicles,
+    };
+  }, [vehicles]);
 
-	const button = (
-		<button className="flex items-center gap-2 bg-black text-white rounded-md px-2.5 py-0.5 cursor-pointer dark:border dark:border-neutral-800" onClick={() => setModalIsOpen(true)}>
-			<i className="fa-light fa-plus" />
-				Ajouter
-			</button>
-	)
+  const fetchVehicles = useCallback(async () => {
+    try {
 
-	return (
-		<div className="flex flex-col gap-10">
-			<div className="grid grid-cols-1 lg:grid-cols-2 items-center justify-between gap-6">
-				<Card 
-					title="Total de véhicules"
-					value={vehicles.length.toString()}
-				/>
+      const response = await fetch("/api/garage", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
 
-				<Card 
-					title="Véhicules sortis"
-					value={vehicles.filter(v => v.employee_id).length.toString()}
-					countCircle={true}
-				/>
-			</div>
+      if (!response.ok) {
+        if (response.status === 401) {
+          throw new Error("Session expirée. Veuillez vous reconnecter.");
+        }
+        if (response.status === 403) {
+          throw new Error("Accès non autorisé.");
+        }
+        throw new Error(`Erreur serveur (${response.status})`);
+      }
 
-			<div className="flex items-center w-full gap-">
-				<Table
-					name="Véhicules"
-					columns={[
-						{label: "ID", value: "vehicle_id"},
-						{label: "Modèle", value: "model", muted: true},
-						{label: "Conducteur", value: "name"},
-						{label: "Plaque", value: "plate", muted: true},
-					]}
-					data={vehicles}
-					filterCategory={['vehicle_id', 'plate', 'model']}
-					button={button}
-				/>
-			</div>
+      const result = await response.json();
 
-			<CreateVehicleModal
-				modalIsOpen={modalIsOpen}
-				setModalIsOpen={setModalIsOpen}
-				isSaving={isSaving}
-				setIsSaving={setIsSaving}
-			/>
-		</div>
-	);
+      if (result.error) {
+        throw new Error(result.error);
+      }
+
+      setVehicles(result.vehicles || []);
+    } catch (err) {
+      const errorMessage =
+        err instanceof Error
+          ? err.message
+          : "Une erreur est survenue lors de la récupération des véhicules";
+      toast.error(errorMessage);
+      console.error("Erreur Garage:", err);
+    }
+  }, []);
+
+  useEffect(() => {
+    fetchVehicles();
+  }, [fetchVehicles]);
+
+  const handleCreateVehicle = useCallback(() => {
+    setCreateModalIsOpen(true);
+  }, []);
+
+  const handleModalClose = useCallback(() => {
+    setCreateModalIsOpen(false);
+    fetchVehicles();
+  }, [fetchVehicles]);
+
+  return (
+    <ErrorBoundary>
+      <div className="flex flex-col gap-10">
+        <div className="grid grid-cols-1 lg:grid-cols-3 items-center justify-between gap-6">
+          <Card title="Total" value={stats.totalVehicles.toString()} />
+
+          <Card
+            title="Véhicules disponibles"
+            value={stats.availableVehicles.toString()}
+            color="text-green-500"
+          />
+
+          <Card
+            title="Véhicules sortis"
+            value={stats.assignedVehicles.toString()}
+            color="text-blue-500"
+          />
+        </div>
+
+        <div className="flex flex-col gap-4">
+          <Table
+            name="Véhicules"
+            columns={[
+              { label: "ID", value: "vehicle_id" },
+              { label: "Modèle", value: "model", muted: true },
+              { label: "Conducteur", value: "name" },
+              { label: "Plaque", value: "plate", muted: true },
+            ]}
+            data={vehicles}
+            filterCategory={["model", "plate", "employee_name"]}
+            button={
+              <button
+                onClick={handleCreateVehicle}
+                className="px-2 py-1 bg-neutral-800 text-white rounded-md shadow-md"
+              >
+                Ajouter un véhicule
+              </button>
+            }
+          />
+        </div>
+
+        {createModalIsOpen && (
+          <CreateVehicle
+            modalIsOpen={createModalIsOpen}
+            setModalIsOpen={setCreateModalIsOpen}
+            isSaving={false}
+            setIsSaving={() => {}}
+            onSuccess={handleModalClose}
+          />
+        )}
+      </div>
+    </ErrorBoundary>
+  );
 }

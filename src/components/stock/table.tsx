@@ -52,7 +52,7 @@ export default function Table({ stock }: { stock: Stock[] }) {
 				</div>
 			</div>
 			<div className="rounded-lg bg-white border border-[var(--border)] dark:bg-neutral-900 dark:border-none">
-				<div className="overflow-x-auto">
+				<div className="overflow-x-auto [&::-webkit-scrollbar]:h-2 [&::-webkit-scrollbar-track]:rounded-full [&::-webkit-scrollbar-track]:bg-gray-100 dark:[&::-webkit-scrollbar-track]:bg-neutral-800 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-gray-300 dark:[&::-webkit-scrollbar-thumb]:bg-neutral-600">
 					<table className="w-full">
 						<thead>
 							<tr className="border-b border-gray-200 bg-gray-50 dark:bg-[var(--table-header-dark)] dark:border-neutral-800">
@@ -69,8 +69,7 @@ export default function Table({ stock }: { stock: Stock[] }) {
 							</tr>
 						</thead>
 						<tbody className="divide-y divide-gray-200 dark:divide-neutral-800">
-							{/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
-							{filteredStock.map((item: any) => {
+							{filteredStock.map((item: Stock) => {
 								const total = item.amount_in + item.amount_ext;
 								return (
 								<tr

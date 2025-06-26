@@ -98,11 +98,9 @@ export default function Header({ onToggleSidebar }: { onToggleSidebar: () => voi
       </div>
       <div className="flex items-center gap-3">
 				<Link href="https://github.com/ElSofian/calipso-dashboard.git">
-					<i
-          className={`fa-brands fa-fw fa-md fa-github cursor-pointer dark:text-white`}
-					/>
+					<i className={`fa-brands fa-fw fa-md fa-github cursor-pointer dark:text-white`} />
 				</Link>
-        <i
+				<i
           className={`fa-light fa-fw fa-md ${
             theme === "light" ? "fa-moon" : "fa-sun-bright"
           } cursor-pointer dark:text-white`}

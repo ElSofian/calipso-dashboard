@@ -1,22 +1,22 @@
 "use client";
 
-import { ReactNode, useState, useEffect } from "react";
-import Sidebar from "@/components/global/sidebar";
 import Header from "@/components/global/header";
+import Sidebar from "@/components/global/sidebar";
 import { useMediaQuery } from "@/hooks/useMediaQuery";
-import { usePathname } from "next/navigation";
 import { User } from "@/types";
+import { usePathname } from "next/navigation";
+import { ReactNode, useEffect, useState } from "react";
 
 interface ResponsiveLayoutProps {
-	user: User;
-	ingame?: boolean;
+  user: User;
+  ingame?: boolean;
   children: ReactNode;
 }
 
 export default function ResponsiveLayout({
-	user,
-	ingame = false,
-  children
+  user,
+  ingame = false,
+  children,
 }: ResponsiveLayoutProps) {
   const isDesktop = useMediaQuery("(min-width: 768px)");
   const [isOpen, setIsOpen] = useState(isDesktop);
@@ -36,24 +36,27 @@ export default function ResponsiveLayout({
     setIsOpen((o) => !o);
   };
 
-	if (ingame) {
-		return (
-			<div className="flex h-screen bg-gray-50 dark:bg-[#18181B] overflow-hidden">
-				<div
-					className={`
+  if (ingame) {
+    return (
+      <div className="flex h-screen bg-gray-50 dark:bg-[#18181B] overflow-hidden">
+        <div
+          className={`
 						flex-1 flex flex-col bg-white dark:bg-black
 						m-3 rounded-2xl border border-[var(--border)] dark:border-none shadow-xs
 						overflow-y-auto transition-all duration-300 ease-in-out
+						[&::-webkit-scrollbar]:w-2
+						[&::-webkit-scrollbar-track]:bg-transparent
+						[&::-webkit-scrollbar-thumb]:bg-gray-200
+						[&::-webkit-scrollbar-thumb]:rounded-full
+						dark:[&::-webkit-scrollbar-thumb]:bg-neutral-700
 					`}
-				>
-					<Header onToggleSidebar={handleToggleSidebar} />
-					<main className="flex-1 overflow-y-auto p-6">
-						{children}
-					</main>
-				</div>
-			</div>
-		);
-	}
+        >
+          <Header onToggleSidebar={handleToggleSidebar} />
+          <main className="flex-1 overflow-y-auto p-6">{children}</main>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="flex h-screen bg-gray-50 dark:bg-[#18181B] overflow-hidden">
@@ -61,13 +64,16 @@ export default function ResponsiveLayout({
         <aside
           className={`
             flex-none h-full overflow-y-auto
-            ${isTransitioning ? 'transition-all duration-300 ease-in-out' : ''}
+            ${isTransitioning ? "transition-all duration-300 ease-in-out" : ""}
             ${isOpen ? "w-72" : "w-0"}
+            [&::-webkit-scrollbar]:w-2
+            [&::-webkit-scrollbar-track]:bg-transparent
+            [&::-webkit-scrollbar-thumb]:bg-gray-200
+            [&::-webkit-scrollbar-thumb]:rounded-full
+            dark:[&::-webkit-scrollbar-thumb]:bg-neutral-700
           `}
         >
-          {isOpen && (
-            <Sidebar user={user} />
-          )}
+          {isOpen && <Sidebar user={user} />}
         </aside>
       )}
 
@@ -77,7 +83,14 @@ export default function ResponsiveLayout({
           onClick={() => handleToggleSidebar()}
         >
           <div
-            className="absolute left-0 top-0 h-full w-64 bg-gray-50 dark:bg-neutral-800 overflow-y-auto shadow-xl transition-transform duration-300 ease-in-out"
+            className={`
+              absolute left-0 top-0 h-full w-64 bg-gray-50 dark:bg-neutral-800 overflow-y-auto shadow-xl transition-transform duration-300 ease-in-out
+              [&::-webkit-scrollbar]:w-2
+              [&::-webkit-scrollbar-track]:bg-transparent
+              [&::-webkit-scrollbar-thumb]:bg-gray-200
+              [&::-webkit-scrollbar-thumb]:rounded-full
+              dark:[&::-webkit-scrollbar-thumb]:bg-neutral-700
+            `}
             onClick={(e) => e.stopPropagation()}
           >
             <Sidebar user={user} />
@@ -93,14 +106,12 @@ export default function ResponsiveLayout({
         `}
       >
         <Header onToggleSidebar={handleToggleSidebar} />
-        <main className="flex-1 overflow-y-auto p-6
-				[&::-webkit-scrollbar]:w-2
-				[&::-webkit-scrollbar-track]:bg-transparent
-			[&::-webkit-scrollbar-thumb]:bg-gray-200
-			dark:[&::-webkit-scrollbar-thumb]:bg-neutral-800
-				">
-          {children}
-        </main>
+        <main className="flex-1 overflow-y-auto p-6 
+						[&::-webkit-scrollbar]:w-2
+            [&::-webkit-scrollbar-track]:bg-transparent
+            [&::-webkit-scrollbar-thumb]:bg-gray-200
+            [&::-webkit-scrollbar-thumb]:rounded-full
+            dark:[&::-webkit-scrollbar-thumb]:bg-neutral-700">{children}</main>
       </div>
     </div>
   );
